@@ -25,15 +25,7 @@ const appRoutes: Routes = [
   { path: 'books/view/:id', canActivate: [AuthGuardService], component: SingleBookComponent },
   { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: '*', redirectTo: 'books' },
-]
-
-
-
-
-
-
-
-
+];
 
 @NgModule({
   declarations: [

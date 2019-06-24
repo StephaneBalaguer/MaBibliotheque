@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  nomdugens : string;
   isAuth: boolean;
 
   constructor(private authService: AuthService) { }
@@ -18,8 +18,10 @@ export class HeaderComponent implements OnInit {
     firebase.auth().onAuthStateChanged(
       (user) => {
         if (user) {
+          this.nomdugens = user.email;
           this.isAuth = true;
         } else {
+          this.nomdugens = null;
           this.isAuth = false;
         }
       }

@@ -9,17 +9,17 @@ import * as firebase from 'firebase';
 export class AppComponent {
   title = 'MaBibliotheque';
   constructor() {
-    const config = {
+    const firebaseConfig = {
       apiKey: "AIzaSyB9l0m3KTdU1hKetaTvK7uVytLXLkREL8g",
       authDomain: "mabibliotheque-6145c.firebaseapp.com",
       databaseURL: "https://mabibliotheque-6145c.firebaseio.com",
       projectId: "mabibliotheque-6145c",
-      storageBucket: "",
+      storageBucket: "mabibliotheque-6145c.appspot.com",
       messagingSenderId: "967486330803",
       appId: "1:967486330803:web:3538aafd05ad55a6"
     };
     // Initialize Firebase
-    firebase.initializeApp(config);
+    firebase.initializeApp(firebaseConfig);
 
   }
 

@@ -12,7 +12,8 @@ export class BooksService {
     this.getBooks();
   }
 
-  books: Book[];
+
+  books: Book[] = [];
   booksSubject = new Subject<Book[]>();
 
   emitBooks() {
@@ -45,16 +46,16 @@ export class BooksService {
     );
   }
 
-  createNewBook(newBook : Book){
+  createNewBook(newBook: Book) {
     this.books.push(newBook);
-    this.saveBooks();
+    this.saveBooks();   
     this.emitBooks();
   }
 
-  removeBooks(book : Book){
+  removeBooks(book: Book) {
     const bookIndexToRemove = this.books.findIndex(
-      (bookEl)=>{
-        if(bookEl === book){
+      (bookEl) => {
+        if (bookEl === book) {
           return true;
         }
       }
