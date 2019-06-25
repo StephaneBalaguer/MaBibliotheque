@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../../models/book.model';
+import { Book, Status } from '../../models/book.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BooksService } from '../../services/books.service';
 @Component({
@@ -9,14 +9,18 @@ import { BooksService } from '../../services/books.service';
 })
 export class SingleBookComponent implements OnInit {
   book: Book;
+  id: any;
+  
+
   constructor(private route: ActivatedRoute,
     private booksService: BooksService,
     private router: Router) { }
 
   ngOnInit() {
+  
     this.book = new Book('', '');
-    const id = this.route.snapshot.params['id'];
-    this.booksService.getSingleBook(+id).then(
+    this.id = this.route.snapshot.params['id'];
+    this.booksService.getSingleBook(+this.id).then(
       (book: Book) => {
         this.book = book;
       }
@@ -27,4 +31,12 @@ export class SingleBookComponent implements OnInit {
     this.router.navigate(['/books']);
   }
 
+  onEdit() {
+    this.router.navigate(['/books', 'edit', this.id]);
+  }
+
+  onDelete(){
+    this.booksService.removeBooks(this.book);
+    this.router.navigate(['/books']);
+  }
 }

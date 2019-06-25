@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Book } from '../../models/book.model';
+import { Book, Status } from '../../models/book.model';
 import { BooksService } from '../../services/books.service';
 import { Router } from '@angular/router';
 
@@ -13,17 +13,24 @@ export class BookFormComponent implements OnInit {
 
   bookForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private booksService: BooksService,
+  util = Status;
+
+  constructor(private formBuilder: FormBuilder,
+    private booksService: BooksService,
     private router: Router) { }
 
   ngOnInit() {
     this.initForm();
   }
 
+
+
+
   initForm() {
     this.bookForm = this.formBuilder.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
+      statut: ['', Validators.required],
       synopsis: ''
     });
   }
@@ -32,9 +39,15 @@ export class BookFormComponent implements OnInit {
     const title = this.bookForm.get('title').value;
     const author = this.bookForm.get('author').value;
     const synopsis = this.bookForm.get('synopsis').value;
+    const etat = this.bookForm.get('statut').value;
     const newBook = new Book(title, author);
+    newBook.etat = etat;
     newBook.synopsis = synopsis;
     this.booksService.createNewBook(newBook);
+    this.router.navigate(['/books']);
+  }
+
+  onAnnuler() {
     this.router.navigate(['/books']);
   }
 }

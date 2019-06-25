@@ -15,7 +15,9 @@ import { AuthService } from './services/auth.service';
 import { BooksService } from './services/books.service';
 import { AuthGuardService } from './services/auth-guard.service';
 
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { EditBookComponent } from './book-list/edit-book/edit-book.component';
+
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -23,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'books', canActivate: [AuthGuardService], component: BookListComponent },
   { path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent },
   { path: 'books/view/:id', canActivate: [AuthGuardService], component: SingleBookComponent },
+  { path: 'books/edit/:id', canActivate: [AuthGuardService], component: EditBookComponent },
   { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: '*', redirectTo: 'books' },
 ];
@@ -35,7 +38,8 @@ const appRoutes: Routes = [
     BookListComponent,
     SingleBookComponent,
     BookFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,

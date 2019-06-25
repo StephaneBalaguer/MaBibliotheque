@@ -48,7 +48,7 @@ export class BooksService {
 
   createNewBook(newBook: Book) {
     this.books.push(newBook);
-    this.saveBooks();   
+    this.saveBooks();
     this.emitBooks();
   }
 
@@ -65,6 +65,15 @@ export class BooksService {
     this.emitBooks();
   }
 
+  editOneBook(i: number, editBook: Book) {
+    this.books[i].author = editBook.author;
+    this.books[i].title = editBook.title;
+    this.books[i].synopsis = editBook.synopsis;
+    this.books[i].etat = editBook.etat;
+    this.saveBooks();
+    this.emitBooks();
+
+  }
 
 
 }
