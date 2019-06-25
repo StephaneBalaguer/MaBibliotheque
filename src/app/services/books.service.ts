@@ -12,7 +12,6 @@ export class BooksService {
     this.getBooks();
   }
 
-
   books: Book[] = [];
   booksSubject = new Subject<Book[]>();
 
@@ -23,6 +22,7 @@ export class BooksService {
   saveBooks() {
     firebase.database().ref('/books').set(this.books);
   }
+
   getBooks() {
     firebase.database().ref('/books')
       .on('value', (data: DataSnapshot) => {
@@ -70,10 +70,8 @@ export class BooksService {
     this.books[i].title = editBook.title;
     this.books[i].synopsis = editBook.synopsis;
     this.books[i].etat = editBook.etat;
+    this.books[i].note = editBook.note;
     this.saveBooks();
     this.emitBooks();
-
   }
-
-
 }

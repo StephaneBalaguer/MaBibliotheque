@@ -19,6 +19,7 @@ export class EditBookComponent implements OnInit {
     title: ['', Validators.required],
     author: ['', Validators.required],
     statut: ['', Validators.required],
+    note: ['', Validators.required],
     synopsis: ''
   });
 
@@ -32,9 +33,7 @@ export class EditBookComponent implements OnInit {
   book: Book;
 
   ngOnInit() {
-    //this.initForm();
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
     this.booksService.getSingleBook(+this.id).then(
       (book: Book) => {
         this.book = book;
@@ -51,33 +50,33 @@ export class EditBookComponent implements OnInit {
       author: this.book.author,
       synopsis: this.book.synopsis,
       statut: this.book.etat,
+      note: this.book.note,
+
     });
-   
+    this.displaynote = this.book.note;
   }
-  /*
-  initForm() {
-    this.bookForm = this.formBuilder.group({
-      title: [this.book.title , Validators.required],
-      author: [this.book.author, Validators.required],
-      synopsis: this.book.synopsis,
-    });
-  }
-*/
+
   onSaveBook() {
     const title = this.bookEditForm.get('title').value;
     const author = this.bookEditForm.get('author').value;
     const synopsis = this.bookEditForm.get('synopsis').value;
     const statut = this.bookEditForm.get('statut').value;
-    console.log(statut);
+    const note = this.bookEditForm.get('note').value;
     const newBook = new Book(title, author);
     newBook.synopsis = synopsis;
+    newBook.note = note;
     newBook.etat = statut;
     this.booksService.editOneBook(this.id, newBook);
     this.router.navigate(['/books']);
   }
 
-
-  onAnnuler(){
+  onAnnuler() {
     this.router.navigate(['/books']);
+  }
+
+  displaynote = 10;
+
+  lavaleurduslider() {
+    this.displaynote = this.bookEditForm.get('note').value;
   }
 }

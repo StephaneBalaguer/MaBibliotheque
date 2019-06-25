@@ -9,6 +9,8 @@ export class AuthService {
 
   constructor() { }
 
+
+
   createNewUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
@@ -40,8 +42,8 @@ export class AuthService {
     );
   }
 
-signOutUser(){
-  firebase.auth().signOut();
-}
+  signOutUser() {
+    firebase.auth().signOut();
+  }
 
 }

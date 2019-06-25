@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BooksService } from '../services/books.service';
-import { Book } from '../models/book.model';
+import { Book, Status } from '../models/book.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 @Component({
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class BookListComponent implements OnInit, OnDestroy {
 
-
+  util = Status;
   books: Book[];
   booksSubscription: Subscription;
 
