@@ -21,6 +21,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
+import { FormulaireComponent } from './book-list/formulaire/formulaire.component';
+import { FormulaireService } from './services/formulaire.service';
 
 
 const appRoutes: Routes = [
@@ -32,6 +34,9 @@ const appRoutes: Routes = [
   { path: 'books/view/:id', canActivate: [AuthGuardService], component: SingleBookComponent },
   { path: 'books/edit/:id', canActivate: [AuthGuardService], component: EditBookComponent },
   { path: 'accueil', component: AccueilComponent },
+
+
+  { path: 'books/formulaire/:id', canActivate: [AuthGuardService], component: FormulaireComponent },
 
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '*', redirectTo: 'accueil' },
@@ -48,7 +53,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     EditBookComponent,
     AccueilComponent,
-
+    FormulaireComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,7 @@ const appRoutes: Routes = [
     AuthService,
     BooksService,
     AuthGuardService,
-
+    FormulaireService,
   ],
   bootstrap: [AppComponent]
 })

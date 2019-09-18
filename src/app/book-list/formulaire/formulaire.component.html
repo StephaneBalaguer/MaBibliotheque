@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Enregistrer un nouveau livre</h2>
+
+
+
+    <div *ngIf="etapeformulaire==1">
+      <form (ngSubmit)="onSubmit(formulaire.value)" #formulaire="ngForm">
+        <div class="form-group">
+          <label for="title">Titre</label>
+          <input type="text" required name="title" class="form-control" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="author">Auteur</label>
+          <input type="text" required name="author" class="form-control" ngModel>
+        </div>
+        <button class="btn btn-warning" (click)="etape_precedante()">Précedent
+        </button>
+        <button class="btn btn-success" type="submit">Suivant
+        </button>
+
+      </form>
+
+    </div>
+
+
+
+    <div *ngIf="etapeformulaire==2">
+      <form (ngSubmit)="onSubmit(formulaire.value)" #formulaire="ngForm">
+        <div class="form-group">
+          <label for="statut">Statut</label>
+          <select name="statut" class="form-control" ngModel>
+            <option value={{util.R}}>Reading</option>
+            <option value={{util.C}}>Completed</option>
+            <option value={{util.O}}>On Hold</option>
+            <option value={{util.P}}>Plan To Watch</option>
+            <option value={{util.D}}>Dropped</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="note">Note</label>
+          <input type="range" min="0" max="20" value="10" class="form-control" name="note" ngModel
+            (mousemove)="lavaleurduslider(formulaire.value)" (change)="lavaleurduslider(formulaire.value)">
+          <p>{{ displaynote }}</p>
+        </div>
+        <button class="btn btn-warning" (click)="etape_precedante()">Précedent
+        </button>
+        <button class="btn btn-success" type="submit">Suivant
+        </button>
+
+      </form>
+    </div>
+
+
+    <div *ngIf="etapeformulaire==3">
+
+      <form (ngSubmit)="onSubmit(formulaire.value)" #formulaire="ngForm">
+        <div class="form-group">
+          <label for="synopsis">Synopsis</label>
+          <textarea name="synopsis" class="form-control" ngModel>
+            </textarea>
+        </div>
+        <button class="btn btn-warning" (click)="etape_precedante()">Précedent
+        </button>
+        <button class="btn btn-success" type="submit">Suivant
+        </button>
+
+      </form>
+    </div>
+
+
+
+
+
+  </div>
+</div>
